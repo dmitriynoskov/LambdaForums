@@ -20,7 +20,13 @@ namespace ServiceLayer
 
         public Post GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Posts
+                .Where(p => p.Id == id)
+                .Include(p => p.User)
+                .Include(p => p.PostReplies)
+                    .ThenInclude(r => r.User)
+                .Include(p => p.Forum)
+                .FirstOrDefault();
         }
 
         public IEnumerable<Post> GetAll()
