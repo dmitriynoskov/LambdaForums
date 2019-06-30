@@ -32,7 +32,10 @@ namespace ServiceLayer
         public IEnumerable<Post> GetAll()
         {
             return _context.Posts
-                .Include(p => p.PostReplies);
+                .Include(p => p.User)
+                .Include(p => p.PostReplies)
+                    .ThenInclude(r => r.User)
+                .Include(p => p.Forum);
         }
 
         public IEnumerable<Post> GetFilteredPosts(string searchQuery)
@@ -45,6 +48,13 @@ namespace ServiceLayer
             return _context.Forums
                 .FirstOrDefault(f => f.Id == forumId)?
                 .Posts;
+        }
+
+        public IEnumerable<Post> GetLatestPosts(int number)
+        {
+            return GetAll()
+                .OrderByDescending(p => p.Created)
+                .Take(number);
         }
 
         public async Task Add(Post post)

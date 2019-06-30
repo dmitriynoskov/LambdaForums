@@ -10,6 +10,7 @@ namespace DataLayer
         IEnumerable<Post> GetAll();
         IEnumerable<Post> GetFilteredPosts(string searchQuery);
         IEnumerable<Post> GetPostsByForum(int forumId);
+        IEnumerable<Post> GetLatestPosts(int number);
 
         Task Add(Post post);
         Task Delete(int id);
