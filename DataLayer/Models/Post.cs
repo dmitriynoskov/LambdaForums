@@ -16,8 +16,6 @@ namespace DataLayer.Models
 
         public int ForumId { get; set; }
 
-        public int UserId { get; set; }
-
         public virtual ApplicationUser User { get; set; }
 
         public virtual Forum Forum { get; set; }
