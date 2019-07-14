@@ -22,6 +22,12 @@ namespace LambdaForums.Models.Post
 
         public string PostContent { get; set; }
 
+        public int ForumId { get; set; }
+
+        public string ForumName { get; set; }
+
+        public bool IsAuthorAdmin { get; set; }
+        
         public IEnumerable<PostReplyModel> Replies { get; set; }
     }
 }

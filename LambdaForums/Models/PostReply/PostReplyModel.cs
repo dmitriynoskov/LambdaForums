@@ -20,6 +20,7 @@ namespace LambdaForums.Models.PostReply
 
         public int PostId { get; set; }
 
+        public bool IsAuthorAdmin { get; set; }
 
     }
 }
