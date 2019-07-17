@@ -38,9 +38,12 @@ namespace ServiceLayer
                 .Include(p => p.Forum);
         }
 
-        public IEnumerable<Post> GetFilteredPosts(string searchQuery)
+        public IEnumerable<Post> GetFilteredPosts(Forum forum, string searchQuery)
         {
-            throw new NotImplementedException();
+            return !string.IsNullOrEmpty(searchQuery)
+                ? forum.Posts
+                    .Where(p => p.Title.Contains(searchQuery.ToLower()) || p.Content.Contains(searchQuery.ToLower()))
+                : forum.Posts;
         }
 
         public IEnumerable<Post> GetPostsByForum(int forumId)

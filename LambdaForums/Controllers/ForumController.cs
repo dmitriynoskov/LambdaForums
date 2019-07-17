@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using DataLayer;
 using DataLayer.Models;
 using LambdaForums.Models.Forum;
@@ -36,10 +35,12 @@ namespace LambdaForums.Controllers
             return View(model);
         }
 
-        public IActionResult Topic(int id)
+        public IActionResult Topic(int id, string searchQuery)
         {
             var forum = _forumService.GetById(id);
-            var posts = forum.Posts;
+
+            var posts = _postService.GetFilteredPosts(forum, searchQuery);
+
             var postListings = posts
                 .Select(p => new PostListingModel
                 {
@@ -60,6 +61,12 @@ namespace LambdaForums.Controllers
             };
 
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Search(int id, string searchQuery)
+        {
+            return RedirectToAction("Topic", new {id, searchQuery});
         }
 
         private ForumListingModel BuildForumListing(Forum forum)
