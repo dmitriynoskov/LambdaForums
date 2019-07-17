@@ -46,6 +46,12 @@ namespace ServiceLayer
                 : forum.Posts;
         }
 
+        public IEnumerable<Post> GetFilteredPosts(string searchQuery)
+        {
+            return GetAll()
+                .Where(p => p.Title.Contains(searchQuery.ToLower()) || p.Content.Contains(searchQuery.ToLower()));
+        }
+
         public IEnumerable<Post> GetPostsByForum(int forumId)
         {
             return _context.Forums

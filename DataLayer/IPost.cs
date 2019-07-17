@@ -9,6 +9,7 @@ namespace DataLayer
         Post GetById(int id);
         IEnumerable<Post> GetAll();
         IEnumerable<Post> GetFilteredPosts(Forum forum, string searchQuery);
+        IEnumerable<Post> GetFilteredPosts(string searchQuery);
         IEnumerable<Post> GetPostsByForum(int forumId);
         IEnumerable<Post> GetLatestPosts(int number);
 
