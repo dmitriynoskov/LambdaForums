@@ -42,24 +42,33 @@ namespace ServiceLayer
             return _context.ApplicationUsers;
         }
 
-        public Task CreateForum(Forum forum)
+        public async Task CreateForum(Forum forum)
         {
-            throw new NotImplementedException();
+            _context.Forums.Add(forum);
+            await _context.SaveChangesAsync();
         }
 
-        public Task DeleteForum(int id)
+        public async Task DeleteForum(int id)
         {
-            throw new NotImplementedException();
+            var forum = GetById(id);
+            _context.Remove(forum);
+            await _context.SaveChangesAsync();
         }
 
-        public Task UpdateForumTitle(int forumId, string forumTitle)
+        public async Task UpdateForumTitle(int forumId, string forumTitle)
         {
-            throw new NotImplementedException();
+            var forum = GetById(forumId);
+            forum.Title = forumTitle;
+            _context.Forums.Update(forum);
+            await _context.SaveChangesAsync();
         }
 
-        public Task UpdateForumDescription(int forumId, string description)
+        public async Task UpdateForumDescription(int forumId, string description)
         {
-            throw new NotImplementedException();
+            var forum = GetById(forumId);
+            forum.Description = description;
+            _context.Forums.Update(forum);
+            await _context.SaveChangesAsync();
         }
     }
 }
