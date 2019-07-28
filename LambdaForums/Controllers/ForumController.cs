@@ -116,7 +116,7 @@ namespace LambdaForums.Controllers
         private async Task<CloudBlockBlob> UploadForumImage(IFormFile file)
         {
             var connectionString = _configuration.GetConnectionString("AzureStorage");
-            var container = _uploadService.GetBlobContainer(connectionString);
+            var container = _uploadService.GetBlobContainer(connectionString, "forum-images");
             var contentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
             var fileName = contentDisposition.FileName.Trim('"');
             var blockBlob = container.GetBlockBlobReference(fileName);
