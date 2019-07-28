@@ -1,5 +1,3 @@
-using System;
-
 namespace LambdaForums.Models
 {
     public class ErrorViewModel

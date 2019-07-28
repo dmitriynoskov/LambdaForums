@@ -39,6 +39,8 @@ namespace LambdaForums
 
             services.AddTransient<DataSeeder>();
 
+            services.AddSingleton(Configuration);
+
             services.AddMvc();
         }
 

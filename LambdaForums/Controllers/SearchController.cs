@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using DataLayer;
 using DataLayer.Models;
 using LambdaForums.Models.Forum;
-using LambdaForums.Models.Home;
 using LambdaForums.Models.Post;
 using LambdaForums.Models.Search;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LambdaForums.Controllers

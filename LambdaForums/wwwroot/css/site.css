@@ -349,6 +349,32 @@
     padding: 24px;
 }
 
+/*User Profiles*/
+.userProfile {
+    padding: 32px 0 64px 24px;
+    background-color: #fff;
+}
+
+#userProfileImage {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    background-color: #ddd;
+}
+
+#userEmailLabel, #userBioLabel, #userCreatedLabel, #userRating, #userActiveLabel {
+    display: block;
+    color: #444;
+    font-family: 'Roboto';
+    padding-top: 3px;
+}
+
+#userName {
+    display: block;
+    color: #2569d5;
+    font-family: 'Roboto';
+    font-size: 1.7em;
+}
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
