@@ -41,14 +41,14 @@ namespace ServiceLayer
         {
             return !string.IsNullOrEmpty(searchQuery)
                 ? forum.Posts
-                    .Where(p => p.Title.Contains(searchQuery.ToLower()) || p.Content.Contains(searchQuery.ToLower()))
+                    .Where(p => p.Title.ToLower().Contains(searchQuery.ToLower()) || p.Content.ToLower().Contains(searchQuery.ToLower()))
                 : forum.Posts;
         }
 
         public IEnumerable<Post> GetFilteredPosts(string searchQuery)
         {
             return GetAll()
-                .Where(p => p.Title.Contains(searchQuery.ToLower()) || p.Content.Contains(searchQuery.ToLower()));
+                .Where(p => p.Title.ToLower().Contains(searchQuery.ToLower()) || p.Content.ToLower().Contains(searchQuery.ToLower()));
         }
 
         public IEnumerable<Post> GetPostsByForum(int forumId)
