@@ -11,7 +11,7 @@ namespace LambdaForums.Models.ApplicationUser
 
         public string UserName { get; set; }
 
-        public string UserRating { get; set; }
+        public int UserRating { get; set; }
 
         public string ProfileImageUrl { get; set; }
 

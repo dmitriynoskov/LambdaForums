@@ -37,11 +37,6 @@ namespace ServiceLayer
                 .Include(f => f.Posts);
         }
 
-        public IEnumerable<ApplicationUser> GetAllApplicationUsers()
-        {
-            return _context.ApplicationUsers;
-        }
-
         public async Task CreateForum(Forum forum)
         {
             _context.Forums.Add(forum);
@@ -69,6 +64,27 @@ namespace ServiceLayer
             forum.Description = description;
             _context.Forums.Update(forum);
             await _context.SaveChangesAsync();
+        }
+
+        public IEnumerable<ApplicationUser> GetActiveUsers(int forumId)
+        {
+            var posts = GetById(forumId).Posts;
+            if (posts != null || !posts.Any())
+            {
+                var postUsers = posts.Select(p => p.User);
+                var replyUsers = posts.SelectMany(p => p.PostReplies).Select(pr => pr.User);
+
+                return postUsers.Union(replyUsers).Distinct();
+            }
+
+            return new List<ApplicationUser>();
+        }
+
+        public bool HasRecentPost(int forumId)
+        {
+            const int hours = 12;
+            var window = DateTime.Now.AddHours(-hours);
+            return GetById(forumId).Posts.Any(p => p.Created > window);
         }
     }
 }

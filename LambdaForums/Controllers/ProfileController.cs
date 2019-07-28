@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Headers;
+﻿using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using DataLayer;
 using DataLayer.Models;
@@ -28,6 +29,27 @@ namespace LambdaForums.Controllers
             _configuration = configuration;
         }
 
+        public IActionResult Index()
+        {
+            var profiles = _userService.GetAll()
+                .OrderByDescending(u => u.Rating)
+                .Select(u => new ProfileModel
+                {
+                    UserName = u.UserName,
+                    ProfileImageUrl = u.ProfileImageUrl,
+                    Email = u.Email,
+                    UserRating = u.Rating,
+                    MemberSince = u.MemberSince,
+                });
+
+            var model = new ProfileListModel
+            {
+                Profiles = profiles
+            };
+
+            return View(model);
+        }
+
         public IActionResult Detail(string id)
         {
             var user = _userService.GetById(id);
@@ -40,7 +62,7 @@ namespace LambdaForums.Controllers
                 MemberSince = user.MemberSince,
                 ProfileImageUrl = user.ProfileImageUrl,
                 UserId = user.Id,
-                UserRating = user.Rating.ToString(),
+                UserRating = user.Rating,
                 IsAdmin = userRoles.Contains("Admin")
             };
             return View(model);

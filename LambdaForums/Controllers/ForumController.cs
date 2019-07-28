@@ -39,11 +39,15 @@ namespace LambdaForums.Controllers
                 {
                     Id = f.Id,
                     Name = f.Title,
-                    Description = f.Description
+                    Description = f.Description,
+                    NumberOfPosts = f.Posts?.Count ?? 0,
+                    ForumImageUrl = f.ImageUrl,
+                    NumberOfUsers = _forumService.GetActiveUsers(f.Id).Count(),
+                    HasRecentPost = _forumService.HasRecentPost(f.Id)
                 });
             var model = new ForumIndexModel
             {
-                ForumList = forums
+                ForumList = forums.OrderBy(f => f.Name)
             };
 
             return View(model);

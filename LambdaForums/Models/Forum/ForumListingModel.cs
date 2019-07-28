@@ -9,5 +9,11 @@
         public string Description { get; set; }
 
         public string ForumImageUrl { get; set; }
+
+        public int NumberOfPosts { get; set; }
+
+        public int NumberOfUsers { get; set; }
+
+        public bool HasRecentPost { get; set; }
     }
 }

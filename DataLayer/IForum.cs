@@ -9,11 +9,11 @@ namespace DataLayer
         Forum GetById(int id);
         IEnumerable<Forum> GetAll();
 
-        IEnumerable<ApplicationUser> GetAllApplicationUsers();
-
         Task CreateForum(Forum forum);
         Task DeleteForum(int id);
         Task UpdateForumTitle(int forumId, string forumTitle);
         Task UpdateForumDescription(int forumId, string description);
+        IEnumerable<ApplicationUser> GetActiveUsers(int forumId);
+        bool HasRecentPost(int forumId);
     }
 }
