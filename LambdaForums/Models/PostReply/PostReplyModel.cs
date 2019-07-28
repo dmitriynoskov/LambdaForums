@@ -22,5 +22,14 @@ namespace LambdaForums.Models.PostReply
 
         public bool IsAuthorAdmin { get; set; }
 
+        public string PostTitle { get; set; }
+
+        public string PostContent { get; set; }
+
+        public string ForumName { get; set; }
+
+        public string ForumImageUrl { get; set; }
+
+        public int ForumId { get; set; }
     }
 }

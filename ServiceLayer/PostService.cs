@@ -81,9 +81,10 @@ namespace ServiceLayer
             throw new NotImplementedException();
         }
 
-        public Task AddReply(PostReply postReply)
+        public async Task AddReply(PostReply postReply)
         {
-            throw new NotImplementedException();
+            _context.PostReplies.Add(postReply);
+            await _context.SaveChangesAsync();
         }
     }
 }
