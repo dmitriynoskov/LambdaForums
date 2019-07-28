@@ -6,11 +6,13 @@ using DataLayer;
 using DataLayer.Models;
 using LambdaForums.Models.Post;
 using LambdaForums.Models.PostReply;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LambdaForums.Controllers
 {
+    [Authorize]
     public class PostController : Controller
     {
         private readonly IPost _postService;
@@ -30,6 +32,7 @@ namespace LambdaForums.Controllers
             _userService = userService;
         }
 
+        [AllowAnonymous]
         public IActionResult Index(int id)
         {
             var post = _postService.GetById(id);
