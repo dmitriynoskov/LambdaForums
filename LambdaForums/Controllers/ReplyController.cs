@@ -69,7 +69,7 @@ namespace LambdaForums.Controllers
             return new PostReply
             {
                 Post = post,
-                Content = model.PostContent,
+                Content = model.ReplyContent,
                 User = user,
                 Created = DateTime.Now
             };
